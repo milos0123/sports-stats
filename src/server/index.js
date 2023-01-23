@@ -30,6 +30,7 @@ app.use(cors());
 app.use(express.static("dist"));
 app.use(express.json());
 
+
 const pool = mysql2.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -45,7 +46,13 @@ const queryDB = async (q) => {
   return rows
 }
 
-const sessionStore = new MySQLStore({}, pool);
+const sessionStore = new MySQLStore({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  port: process.env.DB_PORT,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+}, pool);
 
 app.use(session({
   key: 'session_cookie_name',
