@@ -95,7 +95,7 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   // clientSecret: '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',
   //////////////////////// replace before deploying ////////////////
-  callbackURL: "http://localhost:3000/auth/google/callback",
+  callbackURL: "https://sportstats.cyclic.app/auth/google/callback",
   //////////////////////// replace before deploying ////////////////
   passReqToCallback: true
 }, (request, accessToken, refreshToken, profile, done) => {
@@ -345,7 +345,7 @@ app.post('/register', validateRegisterForm, userExists, async (req, res, next) =
       to: username,
       subject: "Verify e-mail address",
       text: 'Hello, Please Click on the link below to activate your soccer-stats account.',
-      html: `Hello,<br> Please Click on the link below to activate your soccer-stats account.<br><a href='http://localhost:3000/verify/me/${scrt}'>Click here!</a>`
+      html: `Hello,<br> Please Click on the link below to activate your soccer-stats account.<br><a href='https://sportstats.cyclic.app/verify/me/${scrt}'>Click here!</a>`
     })
     await queryDB(`INSERT INTO users(username, hash, salt, secret)
      VALUES("${username}", "${saltHash.hash}", "${saltHash.salt}", "${scrt}")`)
