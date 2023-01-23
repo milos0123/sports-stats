@@ -95,12 +95,8 @@ passport.use(new LocalStrategy({
 
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
-  // clientID: '815572388413-nepbbr7qqpppe5rn08s2vm82ov75hosn.apps.googleusercontent.com',
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  // clientSecret: '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',
-  //////////////////////// replace before deploying ////////////////
   callbackURL: "https://sportstats.cyclic.app/auth/google/callback",
-  //////////////////////// replace before deploying ////////////////
   passReqToCallback: true
 }, (request, accessToken, refreshToken, profile, done) => {
   process.nextTick(async () => {
@@ -183,7 +179,7 @@ app.get('/verify/me/:secret', async (req, res) => {
       await queryDB(`UPDATE users SET secret = NULL WHERE users.secret = "${secret}"`)
       req.login(user[0], function (err) {
         if (err) { return next(err); }
-        return res.redirect('/soccer/league/Superliga/19686');
+        return res.redirect('/user/login');
       });
     } else {
       return res.redirect('/something-went-wrong');
@@ -306,9 +302,7 @@ const transporter = nodemailer.createTransport({
   secure: false,
   auth: {
     user: process.env.SENDINBLUE_USER,
-    // user: 'lekolekovic@gmail.com',
     pass: process.env.SENDINBLUE_PASS,
-    // pass: 'HyDRJEFbW3YG5cft'
   },
 })
 
