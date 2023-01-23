@@ -30,16 +30,13 @@ app.use(cors());
 app.use(express.static("dist"));
 app.use(express.json());
 
-const options = {
+const sessionStore = new MySQLStore({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   port: process.env.DB_PORT,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  multipleStatements: true
-};
-
-const sessionStore = new MySQLStore(options);
+});
 
 app.use(session({
   key: 'session_cookie_name',
@@ -52,7 +49,14 @@ app.use(cookieParser())
 app.use(passport.initialize())
 app.use(passport.session())
 
-const pool = mysql2.createPool(options);
+const pool = mysql2.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  port: process.env.DB_PORT,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  multipleStatements: true
+});
 
 const queryDB = async (q) => {
   const promisePool = pool.promise();
