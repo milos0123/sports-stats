@@ -30,6 +30,24 @@ app.use(cors());
 app.use(express.static("dist"));
 app.use(express.json());
 
+const sessionStore = new MySQLStore({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  port: process.env.DB_PORT,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
+app.use(session({
+  key: 'session_cookie_name',
+  secret: 'session_cookie_secret',
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(cookieParser())
+app.use(passport.initialize())
+app.use(passport.session())
 
 const pool = mysql2.createPool({
   host: process.env.DB_HOST,
@@ -45,27 +63,6 @@ const queryDB = async (q) => {
   const [rows, fields] = await promisePool.query(q);
   return rows
 }
-
-const sessionStore = new MySQLStore({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  port: process.env.DB_PORT,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-}, pool);
-
-app.use(session({
-  key: 'session_cookie_name',
-  secret: 'session_cookie_secret',
-  store: sessionStore,
-  resave: false,
-  saveUninitialized: false
-}));
-app.use(cookieParser())
-app.use(passport.initialize())
-app.use(passport.session())
-
-
 
 const validPassword = (password, hash, salt) => {
   const hashVerify = crypto.pbkdf2Sync(password, salt, 10000, 60, 'sha512').toString('hex');
