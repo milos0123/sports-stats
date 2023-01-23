@@ -179,7 +179,7 @@ app.get('/verify/me/:secret', async (req, res) => {
       await queryDB(`UPDATE users SET secret = NULL WHERE users.secret = "${secret}"`)
       req.login(user[0], function (err) {
         if (err) { return next(err); }
-        return res.redirect('/user/login');
+        return res.redirect('/soccer/league/Superliga/19686');
       });
     } else {
       return res.redirect('/something-went-wrong');
