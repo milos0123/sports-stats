@@ -350,6 +350,14 @@ ul {
     width: 20%;
 }
 
+.navbar-active {
+    padding-left: 100px;
+    padding-right: 10px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
 .nav-fav-leagues {
     padding-bottom: 25px;
 }
@@ -366,8 +374,7 @@ ul {
 .nav-expand {
     display: none;
     align-items: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
     font-size: 4rem;
     justify-content: center;
 }
@@ -511,14 +518,6 @@ ul {
     margin-bottom: 2rem;
 }
 
-.breadcrumb li a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #008000;
-    margin-bottom: 1rem;
-}
-
 .filter-green {
     filter: invert(23%) sepia(95%) saturate(1896%) hue-rotate(100deg)
 }
@@ -530,10 +529,19 @@ ul {
 .breadcrumb {
     display: flex;
     align-items: center;
+    flex-flow: wrap;
 }
 
 .breadcrumb li {
     display: inline-block;
+}
+
+.breadcrumb li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #008000;
+    margin-bottom: 1rem;
 }
 
 .breadcrumb img {
@@ -835,7 +843,7 @@ ul {
     .standings-data,
     .squad a,
     .club-stats .name {
-        width: auto;
+        width: 100%;
     }
 
     .user-info {
@@ -867,17 +875,10 @@ ul {
         font-size: 1.5rem;
     }
 
-    .header .navigation .user-info button {
-        font-size: 2rem;
-        border-radius: 2rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
     .header-expand,
     .nav-expand {
         display: flex;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .header .navigation .head-links {
@@ -908,6 +909,10 @@ ul {
         padding-right: 0px;
         width: 80%;
         display: none;
+    }
+
+    .more-countires {
+        margin-bottom: 0px;
     }
 
     .nav-countries,

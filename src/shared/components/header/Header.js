@@ -9,7 +9,7 @@ import ResponsiveExpand from '../ResponsiveExpand'
 const Header = () => {
     const location = useLocation()
     const ctx = React.useContext(AuthContext)
-    const [isActive, setIsActive] = React.useState(false)
+    const [isActiveHead, setIsActiveHead] = React.useState(false)
 
     React.useEffect(async () => {
         const response = await fetch('/getUser')
@@ -19,8 +19,8 @@ const Header = () => {
         }
     }, [])
 
-    const isActiveHandler = () => {
-        setIsActive((prevState) => {
+    const isActiveHeadHandler = () => {
+        setIsActiveHead((prevState) => {
             return !prevState
         })
     }
@@ -34,8 +34,8 @@ const Header = () => {
                 <HeaderUserInfo />
                 <ResponsiveExpand name={"SPORTS"} classImg={"filter-white"}
                     classSpan={"header-expand"}
-                    isActive={isActive}
-                    isActiveHandler={isActiveHandler} />
+                    isActive={isActiveHead}
+                    isActiveHandler={isActiveHeadHandler} />
                 <SportsNavigation />
             </div>
 
