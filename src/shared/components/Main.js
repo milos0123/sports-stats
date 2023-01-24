@@ -2,11 +2,13 @@ import * as React from "react";
 import { Outlet, Routes, Route } from "react-router-dom";
 import Navbar from './navbar/Navbar'
 import Stats from './stats/Stats'
+import ResponsiveExpand from './ResponsiveExpand'
 
 const Main = ({ data }) => {
   return (
     <div className="main">
       <Navbar data={data} />
+      <ResponsiveExpand name={"LEAGUES"} classSpan={"nav-expand"} />
       <Routes>
         <Route
           key="league/:leagueName/:id"
