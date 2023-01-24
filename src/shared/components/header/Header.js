@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useLocation } from "react-router-dom";
 import AuthContext from "../auth/auth-context";
 import HeaderUserInfo from './HeaderUserInfo'
 import SportsNavigation from './SportsNavigation'
@@ -6,6 +7,8 @@ import ResponsiveExpand from '../ResponsiveExpand'
 
 
 const Header = () => {
+    const location = useLocation()
+
     const ctx = React.useContext(AuthContext)
 
     React.useEffect(async () => {
