@@ -1,5 +1,5 @@
 import * as React from 'react'
-import expand_more from "./assets/expand_more.svg"
+import expand_more from "../assets/expand_more.svg"
 
 const ResponsiveExpand = ({ name, classImg, classSpan }) => {
     return (
