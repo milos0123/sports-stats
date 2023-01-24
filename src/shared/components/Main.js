@@ -11,12 +11,13 @@ const Main = ({ data }) => {
       return !prevState
     })
   }
-  
+
   return (
     <div className="main">
       <ResponsiveExpand name={"LEAGUES"} classSpan={"nav-expand"}
         isActive={isActiveNav}
-        isActiveHandler={isActiveNavHandler} />
+        isActiveHandler={isActiveNavHandler}
+      />
       <Navbar data={data} />
       <Routes>
         <Route

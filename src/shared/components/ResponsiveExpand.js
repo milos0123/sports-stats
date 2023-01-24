@@ -4,13 +4,15 @@ import expand_less from "../assets/expand_less.svg"
 
 const ResponsiveExpand = ({ name, classImg, classSpan, isActive, isActiveHandler }) => {
     return (
-        <span className={classSpan || ""}
-            onClick={isActiveHandler}>
-            {name} <img src={isActive
+        <React.Fragment>
+            <input id={name} onClick={isActiveHandler} type="checkbox" hidden />
+            <label htmlFor={name}
+                className={classSpan || ""}
+            >{name} <img src={isActive
                 ? `/${expand_less.split("/").pop()}`
                 : `/${expand_more.split("/").pop()}`}
-                className={classImg || ""} />
-        </span >
+                className={classImg || ""} /></label>
+        </React.Fragment>
     )
 }
 

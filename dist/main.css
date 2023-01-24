@@ -722,19 +722,6 @@ ul {
     margin-right: 1rem;
 }
 
-/* .player-name img:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    height: 74px;
-    width: 75px;
-    border: 1px solid rgb(220, 220, 220);
-    border-radius: 1rem;
-    padding: 1rem;
-    margin-right: 1rem;
-    background-image: url("https://cdn.sportmonks.com/images/soccer/placeholder.png");
-} */
-
 .player-data {
     display: flex;
     flex-direction: column;
@@ -827,6 +814,16 @@ ul {
     border-color: gray transparent gray transparent;
     animation: lds-dual-ring 1.2s linear infinite;
 }
+
+#SPORTS:checked+label+.head-links {
+    display: flex;
+}
+
+#LEAGUES:checked+label+.navbar {
+    display: flex;
+    flex-direction: column;
+}
+
 
 @media (max-width: 900px) {
     .forms {

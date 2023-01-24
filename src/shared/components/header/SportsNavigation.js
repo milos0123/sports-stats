@@ -10,28 +10,29 @@ const HeaderUserInfo = () => {
     const location = useLocation()
 
     return (
-        <div className="head-links">
+        <div className="head-links" >
             <NavLink to="/soccer/league/Superliga/19686"
-                className={location.pathname.includes("/soccer/league/") ? "active-header" : ""}>
+                className={location.pathname.includes("/soccer/league/") ? "active-header" : ""}
+                key="soccer_nav">
                 <img src={`/${sports_soccer.split("/").pop()}`}
                     className={location.pathname.includes("/soccer/league/") ? "active-header-svg" : "header-svg"} />
                 &nbsp;<span>SOCCER</span></NavLink>
-            <NavLink
+            <NavLink key="bassketball_nav"
                 className={location.pathname.includes("/basketball") ? "active-header" : ""}>
                 <img src={`/${sports_basketball.split("/").pop()}`}
                     className={location.pathname.includes("/basketball") ? "active-header-svg" : "header-svg"} />
                 &nbsp;<span>BASKETBALL</span></NavLink>
-            <NavLink
+            <NavLink key="tennis_nav"
                 className={location.pathname.includes("/tennis") ? "active-header" : ""}>
                 <img src={`/${sports_tennis.split("/").pop()}`}
                     className={location.pathname.includes("/tennis") ? "active-header-svg" : "header-svg"} />
                 &nbsp;<span>TENNIS</span></NavLink>
-            <NavLink
+            <NavLink key="hockey_nav"
                 className={location.pathname.includes("/hockey") ? "active-header" : ""}>
                 <img src={`/${sports_hockey.split("/").pop()}`}
                     className={location.pathname.includes("/hockey") ? "active-header-svg" : "header-svg"} />
                 &nbsp;<span>HOCKEY</span></NavLink>
-            <NavLink>
+            <NavLink  key="more_nav">
                 <span>More</span>&nbsp;
                 <img src={`/${expand_more.split("/").pop()}`}
                     className="header-svg" />
