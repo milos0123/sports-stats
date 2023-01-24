@@ -262,6 +262,7 @@ app.get("*", catchAsyncErr(async (req, res, next) => {
         <head>
           <title>Sportska statitstika</title>
           <script src="/bundle.js" defer></script>
+          <meta name="viewport" content="width=device-width,initial-scale=1">
           <link href="/main.css" rel="stylesheet">
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />  <script>            
             window.__INITIAL_NATIONS_DATA__ = ${serialize(data.nationsData)}

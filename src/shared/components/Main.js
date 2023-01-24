@@ -5,10 +5,18 @@ import Stats from './stats/Stats'
 import ResponsiveExpand from './ResponsiveExpand'
 
 const Main = ({ data }) => {
+  const [isActive, setIsActive] = React.useState(false)
+  const isActiveHandler = () => {
+    setIsActive((prevState) => {
+      return !prevState
+    })
+  }
   return (
     <div className="main">
+      <ResponsiveExpand name={"LEAGUES"} classSpan={"nav-expand"}
+        isActive={isActive}
+        isActiveHandler={isActiveHandler} />
       <Navbar data={data} />
-      <ResponsiveExpand name={"LEAGUES"} classSpan={"nav-expand"} />
       <Routes>
         <Route
           key="league/:leagueName/:id"

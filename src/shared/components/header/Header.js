@@ -8,8 +8,8 @@ import ResponsiveExpand from '../ResponsiveExpand'
 
 const Header = () => {
     const location = useLocation()
-
     const ctx = React.useContext(AuthContext)
+    const [isActive, setIsActive] = React.useState(false)
 
     React.useEffect(async () => {
         const response = await fetch('/getUser')
@@ -19,6 +19,12 @@ const Header = () => {
         }
     }, [])
 
+    const isActiveHandler = () => {
+        setIsActive((prevState) => {
+            return !prevState
+        })
+    }
+
     return (
         <nav className={location.pathname.split("/").includes("user") ? "none" : "header"}>
             <div className="headline">
@@ -26,7 +32,10 @@ const Header = () => {
             </div>
             <div className="navigation">
                 <HeaderUserInfo />
-                <ResponsiveExpand name={"SPORTS"} classImg={"filter-white"} classSpan={"header-expand"} />
+                <ResponsiveExpand name={"SPORTS"} classImg={"filter-white"}
+                    classSpan={"header-expand"}
+                    isActive={isActive}
+                    isActiveHandler={isActiveHandler} />
                 <SportsNavigation />
             </div>
 

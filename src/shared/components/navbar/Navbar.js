@@ -84,7 +84,7 @@ const Navbar = ({ data }) => {
             })
         }
     }
-    
+
     return (
         loading
             ? <div className="lds-dual-ring-nav"></div>
