@@ -6,7 +6,7 @@ const StatsTableOne = ({data}) => {
             <thead>
                 <tr key="club-stats-tb1">
                     <th className='for'>For</th>
-                    <th>#</th>
+                    <th className='head-one'>#</th>
                 </tr>
             </thead>
             <tbody>

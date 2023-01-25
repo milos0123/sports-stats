@@ -6,7 +6,7 @@ const PlayerTableTwo = ({ data }) => {
             <thead>
                 <tr key="pltb2">
                     <th className='for'>{data[0]?.at(0).toUpperCase().concat(data[0]?.slice(1))}</th>
-                    <th>#</th>
+                    <th className='head-one'>#</th>
                 </tr>
             </thead>
             <tbody>

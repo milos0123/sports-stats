@@ -6,7 +6,7 @@ const PlayerTableOne = ({ data }) => {
             <thead>
                 <tr key="pltbl1" >
                     <th className='for'>Statistics</th>
-                    <th>#</th>
+                    <th className='head-one'>#</th>
                 </tr>
             </thead>
             <tbody>

@@ -8,8 +8,8 @@ const StatsTableFour = ({ goalLineData }) => {
                     <thead>
                         <tr key={`${i}_club-stats-tb4`}>
                             <th className='for'>{"Goal line " + elem[0]}</th>
-                            <th>Home</th>
-                            <th>Away</th>
+                            <th className='head-two'>Home</th>
+                            <th className='head-two'>Away</th>
                         </tr>
                     </thead>
                     <tbody>

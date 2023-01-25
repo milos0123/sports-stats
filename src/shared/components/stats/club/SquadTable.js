@@ -7,7 +7,7 @@ const SquadTable = ({ data }) => {
         <table className="squad-table">
             <thead>
                 <tr key="squadTable">
-                    <th>#</th><th>Name</th><th>MP</th><th>G</th><th>YC</th><th>RC</th><th>DOB</th>
+                    <th>#</th><th>Name</th><th>MP</th><th>G</th><th>A</th><th>YC</th><th>RC</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,9 +21,9 @@ const SquadTable = ({ data }) => {
                         </NavLink></td>
                         <td className="standings-data">{p.appearences || "0"}</td>
                         <td className="standings-data">{p.goals || "0"}</td>
+                        <td className="standings-data">{p.assists || "0"}</td>
                         <td className="standings-data">{p.yellowcards || "0"}</td>
                         <td className="standings-data">{p.redcards || "0"}</td>
-                        <td className="standings-data">{p.player.data.birthdate || "n/a"}</td>
                     </tr>
                 ))}
             </tbody>

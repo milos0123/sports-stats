@@ -689,6 +689,16 @@ ul {
     width: 4rem;
 }
 
+.club-stats .head-one {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.club-stats .head-two {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
 .for {
     text-align: start;
     text-indent: 1rem;
@@ -836,10 +846,13 @@ ul {
     }
 
     .league-clubs-club a,
-    .standings-data,
     .squad a,
     .club-stats .name {
         width: 100%;
+    }
+
+    .club-stats .data {
+        padding-right: 1rem;
     }
 
     .user-info {
@@ -864,12 +877,6 @@ ul {
     .navigation {
         margin-right: 0px;
     }
-
-    /* .header .navigation .user-info span,
-    .nav-fav-leagues h2,
-    .expand-more {
-        font-size: 1.5rem;
-    } */
 
     .header-expand,
     .nav-expand {
@@ -908,12 +915,6 @@ ul {
 
     .more-countires {
         margin-bottom: 0px;
-    }
-
-    .nav-countries,
-    .nav-countries h2,
-    .nav-fav-leagues li a {
-        font-size: 1.5rem;
     }
 
     .stats {

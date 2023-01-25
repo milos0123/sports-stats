@@ -8,7 +8,7 @@ const StatsTableFive = ({ penaltiesData }) => {
             <thead>
                 <tr key="clubstats">
                     <th className='for'>Penalties</th>
-                    <th>#</th>
+                    <th className='head-one'>#</th>
                 </tr>
             </thead>
             <tbody>

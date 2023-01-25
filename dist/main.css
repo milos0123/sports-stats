@@ -248,8 +248,8 @@ ul {
     color: white;
     display: none;
     align-items: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 4rem;
     justify-content: center;
 }
@@ -596,13 +596,12 @@ ul {
     display: flex;
     align-items: center;
     width: 20rem;
-    color: rgb(20, 20, 20);
+    color: green;
     text-decoration: none;
 }
 
 .league-clubs-club a:hover {
     text-decoration: underline;
-    color: green !important;
 }
 
 .standings-data {
@@ -658,7 +657,7 @@ ul {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: rgb(20, 20, 20);
+    color: green;
 }
 
 .squad a:hover {
@@ -688,6 +687,16 @@ ul {
 .club-stats .data {
     text-align: center;
     width: 4rem;
+}
+
+.club-stats .head-one {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.club-stats .head-two {
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .for {
@@ -837,10 +846,13 @@ ul {
     }
 
     .league-clubs-club a,
-    .standings-data,
     .squad a,
     .club-stats .name {
         width: 100%;
+    }
+
+    .club-stats .data {
+        padding-right: 1rem;
     }
 
     .user-info {
@@ -859,28 +871,22 @@ ul {
     }
 
     .header .headline h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .navigation {
         margin-right: 0px;
     }
 
-    .header .navigation .user-info span,
-    .nav-fav-leagues h2,
-    .expand-more {
-        font-size: 1.5rem;
-    }
-
     .header-expand,
     .nav-expand {
         display: flex;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .header .navigation .head-links {
         flex-direction: column;
-        align-items: center;
+        align-items: start;
         display: none;
         padding-bottom: 1rem;
     }
@@ -891,13 +897,12 @@ ul {
     .star,
     .expand-less,
     .expand-more,
-    .active-header-svg,
-    .header-user-svg {
-        width: 40px;
+    .active-header-svg {
+        width: 30px;
     }
 
     .header .navigation .head-links a {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         margin-top: 1rem;
     }
 
@@ -910,12 +915,6 @@ ul {
 
     .more-countires {
         margin-bottom: 0px;
-    }
-
-    .nav-countries,
-    .nav-countries h2,
-    .nav-fav-leagues li a {
-        font-size: 1.5rem;
     }
 
     .stats {

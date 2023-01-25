@@ -30,6 +30,30 @@ app.use(cors());
 app.use(express.static("dist"));
 app.use(express.json());
 
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [],
+      connectSrc: ["'self'", ...connectSrcUrls],
+      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+      scriptSrcAttr: ["'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+      workerSrc: ["'self'", "blob:"],
+      childSrc: ["blob:", "https://www.sandbox.paypal.com/"],
+      objectSrc: [],
+      imgSrc: [
+        "'self'",
+        "blob:",
+        "data:",
+        "https://res.cloudinary.com/de0mchrco/",
+        "https://images.unsplash.com",
+        "https://upload.wikimedia.org/",
+      ],
+      fontSrc: ["'self'", ...fontSrcUrls],
+    },
+  })
+);
+
 const sessionStore = new MySQLStore({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -260,7 +284,7 @@ app.get("*", catchAsyncErr(async (req, res, next) => {
       <!DOCTYPE html>
       <html>
         <head>
-          <title>Sportska statitstika</title>
+          <title>Sports Statistics</title>
           <script src="/bundle.js" defer></script>
           <meta name="viewport" content="width=device-width,initial-scale=1">
           <link href="/main.css" rel="stylesheet">
