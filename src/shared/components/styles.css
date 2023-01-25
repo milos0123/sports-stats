@@ -248,8 +248,8 @@ ul {
     color: white;
     display: none;
     align-items: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 4rem;
     justify-content: center;
 }
@@ -858,28 +858,28 @@ ul {
     }
 
     .header .headline h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .navigation {
         margin-right: 0px;
     }
 
-    .header .navigation .user-info span,
+    /* .header .navigation .user-info span,
     .nav-fav-leagues h2,
     .expand-more {
         font-size: 1.5rem;
-    }
+    } */
 
     .header-expand,
     .nav-expand {
         display: flex;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .header .navigation .head-links {
         flex-direction: column;
-        align-items: center;
+        align-items: start;
         display: none;
         padding-bottom: 1rem;
     }
@@ -890,13 +890,12 @@ ul {
     .star,
     .expand-less,
     .expand-more,
-    .active-header-svg,
-    .header-user-svg {
-        width: 40px;
+    .active-header-svg {
+        width: 30px;
     }
 
     .header .navigation .head-links a {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         margin-top: 1rem;
     }
 
