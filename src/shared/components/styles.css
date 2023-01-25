@@ -219,15 +219,22 @@ ul {
     display: flex;
     justify-content: space-between;
     background-color: #002000;
+    height: 7rem;
 }
 
 .header .headline {
     margin-left: 100px;
     width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+.header .headline a {
+    text-decoration: none;
 }
 
 .header .headline h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: white;
 }
 
@@ -399,7 +406,7 @@ ul {
 .nav-fav-leagues li a {
     text-decoration: none;
     font-size: 1rem;
-    color: rgb(20, 20, 20);
+    color: green;
 }
 
 .nav-fav-leagues li a:hover {
@@ -486,13 +493,14 @@ ul {
 }
 
 .active-nav-fav-league-toggler {
+    font-weight: bold;
     color: green !important;
     text-decoration: underline !important;
 }
 
 .deactive-nav-fav-league-toggler {
     text-decoration: none;
-    color: rgb(20, 20, 20) !important;
+    color: green !important;
 }
 
 
@@ -859,6 +867,10 @@ ul {
         justify-content: center;
     }
 
+    .header {
+        height: auto;
+    }
+
     .header,
     .main {
         flex-direction: column;
@@ -868,10 +880,6 @@ ul {
     .header .headline {
         margin-left: 0px;
         width: auto;
-    }
-
-    .header .headline h1 {
-        font-size: 2rem;
     }
 
     .navigation {

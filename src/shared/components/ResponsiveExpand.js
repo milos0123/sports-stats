@@ -8,7 +8,8 @@ const ResponsiveExpand = ({ name, classImg, classSpan, isActive, isActiveHandler
             <input id={name} onClick={isActiveHandler} type="checkbox" hidden
                 checked={isActive
                     ? true
-                    : false} />
+                    : false}
+                readOnly={true} />
             <label htmlFor={name}
                 className={classSpan || ""}
             >{name} <img src={isActive

@@ -17,14 +17,16 @@ const HeaderUserInfo = () => {
             navigation('/user/register', { replace: true })
         }
     }
-    
+
     return (
         <div className="user-info">
             <div>
                 <span>
                     <img src={`/${person.split("/").pop()}`}
                         className="header-user-svg" />
-                    <span> {ctx.username}</span></span>
+                    <span> {ctx.username.slice(0, ctx.username.indexOf("@"))
+                    }</span>
+                </span>
                 <button onClick={userLogoutHandler}>Logout</button>
             </div>
         </div>

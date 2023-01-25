@@ -193,7 +193,7 @@ const getData = async (req, res) => {
 app.get('/getUser', (req, res) => {
   const { username } = req.user || { username: "" };
   username.length
-    ? res.status(200).json(username.slice(0, username.indexOf("@")))
+    ? res.status(200).json(username)
     : res.status(400).json('Not logged in')
 })
 
@@ -265,14 +265,15 @@ app.get("/fetchNationsData/:pageNum", catchAsyncErr(async (req, res) => {
 
 app.get("*", catchAsyncErr(async (req, res, next) => {
   const route = routes.find((route) => matchPath(route.path, req.url)) || {}
-  if (req.user) {
+  const user = req.user
+  if (user) {
     if (!route.path) {
       return res.redirect("/soccer/league/Superliga/19686")
     }
   } else if (!route.path) {
     return res.redirect("/user/register")
   }
-  const data = req.user
+  const data = user
     ? await getData(req, res)
     : {}
   const notif = req.app.locals.notif || ""
@@ -352,7 +353,7 @@ app.post('/login', validateLoginForm, passport.authenticate('local'),
           res.status(400).json(".......Please verify your e-mail adress first....")
         });
       } else {
-        res.status(200).json(`${[results[0].username.slice(0, results[0].username.indexOf("@"))]}`)
+        res.status(200).json(results[0].username)
       }
     } catch (error) {
       return next(error);

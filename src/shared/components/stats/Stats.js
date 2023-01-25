@@ -10,7 +10,7 @@ const Stats = ({ data }) => {
     const { id, clubID, playerID } = useParams()
     const [repos, setRepos] = React.useState(() => {
         return __isBrowser__
-            ? window.__INITIAL_CLUBS_DATA__
+            ? window.__INITIAL_CLUBS_DATA__ 
             : data.clubsData
     })
     const [loading, setLoading] = React.useState(
@@ -51,7 +51,7 @@ const Stats = ({ data }) => {
     const league = repos?.find(team => team?.current_season_id === +id)
     const club = repos?.find(c => c?.id === +clubID)
     const player = club?.squad.data.find(p => p.player_id === +playerID)
-    
+
     return (
         loading
             ? <div className="lds-dual-ring"></div>

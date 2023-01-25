@@ -15,7 +15,6 @@ const App = ({ serverData, notif }) => {
             ? window.__INITIAL_NOTIF__
             : notif || ""
     })
-    
     const notifHandler = (data) => {
         setNotification(data)
     }

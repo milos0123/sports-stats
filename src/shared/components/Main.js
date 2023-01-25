@@ -18,7 +18,7 @@ const Main = ({ data }) => {
         isActive={isActiveNav}
         isActiveHandler={isActiveNavHandler}
       />
-      <Navbar data={data}  isActiveHandler={isActiveNavHandler}/>
+      <Navbar data={data} isActiveHandler={isActiveNavHandler}/>
       <Routes>
         <Route
           key="league/:leagueName/:id"

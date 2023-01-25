@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import AuthContext from "../auth/auth-context";
 import HeaderUserInfo from './HeaderUserInfo'
 import SportsNavigation from './SportsNavigation'
@@ -10,7 +10,7 @@ const Header = () => {
     const location = useLocation()
     const ctx = React.useContext(AuthContext)
     const [isActiveHead, setIsActiveHead] = React.useState(false)
-
+    
     React.useEffect(async () => {
         const response = await fetch('/getUser')
         const user = await response.json()
@@ -28,7 +28,8 @@ const Header = () => {
     return (
         <nav className={location.pathname.split("/").includes("user") ? "none" : "header"}>
             <div className="headline">
-                <h1>SPORTS-STATS</h1>
+                <Link to="/soccer/league/Superliga/19686">
+                    <h1>SPORTS-STATS</h1></Link>
             </div>
             <div className="navigation">
                 <HeaderUserInfo />
