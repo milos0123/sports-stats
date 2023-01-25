@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import NavFavLeagues from './NavFavLeagues'
 import NavCountries from './NavCountries'
 
-const Navbar = ({ data }) => {
+const Navbar = ({ data, isActiveHandler }) => {
     const navigation = useNavigate()
     const [nationsPagination, setNationsPagination] = React.useState(1)
     const [repos, setRepos] = React.useState(() => {
@@ -89,8 +89,10 @@ const Navbar = ({ data }) => {
         loading
             ? <div className="lds-dual-ring-nav"></div>
             : <div className="navbar">
-                <NavFavLeagues favourites={favourites} favLeagueHandler={favLeagueHandler} />
-                <NavCountries repos={repos} favourites={favourites} favLeagueHandler={favLeagueHandler} />
+                <NavFavLeagues favourites={favourites} favLeagueHandler={favLeagueHandler}
+                    isActiveHandler={isActiveHandler} />
+                <NavCountries repos={repos} favourites={favourites} favLeagueHandler={favLeagueHandler}
+                    isActiveHandler={isActiveHandler} />
             </div>
     )
 }

@@ -2,7 +2,7 @@ import * as React from 'react'
 import NavFavLeague from "./NavFavLeague";
 import star_fill from '../../assets/star_fill.svg'
 
-const NavFavLeagues = ({ favourites, favLeagueHandler }) => {
+const NavFavLeagues = ({ favourites, favLeagueHandler, isActiveHandler }) => {
     return (
         <ul className="nav-fav-leagues">
             <h2>
@@ -15,6 +15,7 @@ const NavFavLeagues = ({ favourites, favLeagueHandler }) => {
                 <li key={`${id}_favL`}>
                     <NavFavLeague
                         key={`${id}_favL123`}
+                        isActiveHandler={isActiveHandler}
                         favLeagueData={{ imgPath, name, id }}
                         favLeagueHandler={favLeagueHandler}
                     />

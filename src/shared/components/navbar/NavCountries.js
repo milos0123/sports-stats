@@ -2,9 +2,9 @@ import * as React from 'react'
 import NavCountry from './NavCountry'
 import expand_more from '../../assets/expand_more.svg'
 
-const NavCountries = ({ repos, favourites, favLeagueHandler }) => {
+const NavCountries = ({ repos, favourites, favLeagueHandler, isActiveHandler }) => {
     const [showCountiresNum, setShowCountiresNum] = React.useState(30)
-    
+
     const showMoreCountriesNumHandler = () => {
         setShowCountiresNum(1000)
     }
@@ -14,8 +14,9 @@ const NavCountries = ({ repos, favourites, favLeagueHandler }) => {
             <h2>All leagues</h2>
             {repos?.sort((a, b) => a.name.localeCompare(b.name))
                 .map(({ name, leagues, image_path }, i) => (
-                    i < showCountiresNum && <NavCountry
+                    i < showCountiresNum && leagues && <NavCountry
                         key={`${i}_123`}
+                        isActiveHandler={isActiveHandler}
                         favLeagues={favourites.favLeagues}
                         countryData={{ name, leagues, image_path }}
                         favLeagueHandler={favLeagueHandler}

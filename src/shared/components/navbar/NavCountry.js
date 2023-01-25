@@ -3,7 +3,7 @@ import NavCountryLeague from './NavCountryLeague'
 import expand_more from '../../assets/expand_more.svg'
 import expand_less from '../../assets/expand_less.svg'
 
-const NavCountry = ({ countryData, favLeagueHandler, favLeagues }) => {
+const NavCountry = ({ countryData, favLeagueHandler, favLeagues, isActiveHandler }) => {
     const { name, leagues, image_path } = countryData
     const [showLeagues, setShowLeagues] = React.useState(false)
 
@@ -12,7 +12,7 @@ const NavCountry = ({ countryData, favLeagueHandler, favLeagues }) => {
             return !prevState
         })
     }
-    
+
     return (
         <li className={showLeagues ? "active-league" : ""}
             key={`${name}_name`}>
@@ -29,6 +29,7 @@ const NavCountry = ({ countryData, favLeagueHandler, favLeagues }) => {
                     current_round_id && <li key={`${name}_league`}
                         className='nav-countirie-league'>
                         <NavCountryLeague
+                            isActiveHandler={isActiveHandler}
                             key={`${name}_league123`}
                             favLeagues={favLeagues}
                             countryLeaguesData={{ name, current_season_id, logo_path, image_path }}

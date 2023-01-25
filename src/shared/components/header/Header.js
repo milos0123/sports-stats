@@ -36,7 +36,7 @@ const Header = () => {
                     classSpan={"header-expand"}
                     isActive={isActiveHead}
                     isActiveHandler={isActiveHeadHandler} />
-                <SportsNavigation />
+                <SportsNavigation isActiveHeadHandler={isActiveHeadHandler} />
             </div>
 
         </nav>

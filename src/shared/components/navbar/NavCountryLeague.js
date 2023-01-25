@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import star from '../../assets/star.svg'
 import star_fill from '../../assets/star_fill.svg'
 
-const NavCountryLeague = ({ countryLeaguesData, favLeagueHandler, favLeagues }) => {
+const NavCountryLeague = ({ countryLeaguesData, favLeagueHandler, favLeagues, isActiveHandler }) => {
     const { name, current_season_id, image_path } = countryLeaguesData
     const [starSrc, setStarSrc] = React.useState("star")
 
@@ -14,10 +14,11 @@ const NavCountryLeague = ({ countryLeaguesData, favLeagueHandler, favLeagues }) 
             setStarSrc("star")
         }
     }, [favLeagues])
-    
+
     return (
         <React.Fragment>
             <NavLink to={`/soccer/league/${name}/${current_season_id}`}
+                onClick={isActiveHandler}
                 className={({ isActive }) =>
                     isActive ? "active-nav-fav-league-toggler" : "deactive-nav-fav-league-toggler"}   >
                 {name}

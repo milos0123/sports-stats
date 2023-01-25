@@ -5,7 +5,10 @@ import expand_less from "../assets/expand_less.svg"
 const ResponsiveExpand = ({ name, classImg, classSpan, isActive, isActiveHandler }) => {
     return (
         <React.Fragment>
-            <input id={name} onClick={isActiveHandler} type="checkbox" hidden />
+            <input id={name} onClick={isActiveHandler} type="checkbox" hidden
+                checked={isActive
+                    ? true
+                    : false} />
             <label htmlFor={name}
                 className={classSpan || ""}
             >{name} <img src={isActive

@@ -6,12 +6,13 @@ import sports_tennis from "../../assets/sports_tennis.svg"
 import sports_hockey from "../../assets/sports_hockey.svg"
 import expand_more from "../../assets/expand_more.svg"
 
-const HeaderUserInfo = () => {
+const SportsNavigation = ({ isActiveHeadHandler }) => {
     const location = useLocation()
 
     return (
         <div className="head-links" >
             <NavLink to="/soccer/league/Superliga/19686"
+                onClick={isActiveHeadHandler}
                 className={location.pathname.includes("/soccer/league/") ? "active-header" : ""}
                 key="soccer_nav">
                 <img src={`/${sports_soccer.split("/").pop()}`}
@@ -32,7 +33,7 @@ const HeaderUserInfo = () => {
                 <img src={`/${sports_hockey.split("/").pop()}`}
                     className={location.pathname.includes("/hockey") ? "active-header-svg" : "header-svg"} />
                 &nbsp;<span>HOCKEY</span></NavLink>
-            <NavLink  key="more_nav">
+            <NavLink key="more_nav">
                 <span>More</span>&nbsp;
                 <img src={`/${expand_more.split("/").pop()}`}
                     className="header-svg" />
@@ -41,4 +42,4 @@ const HeaderUserInfo = () => {
     )
 }
 
-export default HeaderUserInfo
+export default SportsNavigation

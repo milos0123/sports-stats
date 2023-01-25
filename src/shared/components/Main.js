@@ -6,7 +6,7 @@ import ResponsiveExpand from './ResponsiveExpand'
 
 const Main = ({ data }) => {
   const [isActiveNav, setIsActiveNav] = React.useState(false)
-  const isActiveNavHandler = () => {
+  const isActiveNavHandler = (elem) => {
     setIsActiveNav(prevState => {
       return !prevState
     })
@@ -18,7 +18,7 @@ const Main = ({ data }) => {
         isActive={isActiveNav}
         isActiveHandler={isActiveNavHandler}
       />
-      <Navbar data={data} />
+      <Navbar data={data}  isActiveHandler={isActiveNavHandler}/>
       <Routes>
         <Route
           key="league/:leagueName/:id"
