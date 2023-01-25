@@ -34,10 +34,10 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: [],
-      connectSrc: ["'self'", ...connectSrcUrls],
-      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+      connectSrc: ["'self'", 'https://soccer.sportmonks.com'],
+      scriptSrc: ["'unsafe-inline'", "'self'", 'https://soccer.sportmonks.com'],
       scriptSrcAttr: ["'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       workerSrc: ["'self'", "blob:"],
       childSrc: ["blob:", "https://www.sandbox.paypal.com/"],
       objectSrc: [],
@@ -48,8 +48,10 @@ app.use(
         "https://res.cloudinary.com/de0mchrco/",
         "https://images.unsplash.com",
         "https://upload.wikimedia.org/",
+        'https://soccer.sportmonks.com',
+        "https://cdn.sportmonks.com"
       ],
-      fontSrc: ["'self'", ...fontSrcUrls],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
     },
   })
 );
