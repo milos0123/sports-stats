@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useLocation, Link } from "react-router-dom";
-import AuthContext from "../auth/auth-context";
 import HeaderUserInfo from './HeaderUserInfo'
 import SportsNavigation from './SportsNavigation'
 import ResponsiveExpand from '../ResponsiveExpand'
@@ -8,17 +7,7 @@ import ResponsiveExpand from '../ResponsiveExpand'
 
 const Header = () => {
     const location = useLocation()
-    const ctx = React.useContext(AuthContext)
     const [isActiveHead, setIsActiveHead] = React.useState(false)
-    
-    React.useEffect(async () => {
-        const response = await fetch('/getUser')
-        const user = await response.json()
-        if (response.ok) {
-            ctx.logginUser(user)
-        }
-    }, [])
-
     const isActiveHeadHandler = () => {
         setIsActiveHead((prevState) => {
             return !prevState

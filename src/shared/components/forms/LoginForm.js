@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useNavigate } from "react-router-dom";
 import AuthContext from '../auth/auth-context';
 
-const LoginForm = ({ notifHandler }) => {
+const LoginForm = ({ notifHandler, sendLoginRepos }) => {
     const loginEmailRef = React.useRef()
     const loginPasswordRef = React.useRef()
     const ctx = React.useContext(AuthContext)
@@ -29,12 +29,15 @@ const LoginForm = ({ notifHandler }) => {
             }
         } else {
             const data = await response.json()
-            ctx.logginUser(data)
+            const { nationsData, clubsData, username } = data
+            // console.log("logindata client:::", data)
+            ctx.logginUser(username)
+            sendLoginRepos({ nationsData, clubsData })
             notifHandler("")
             navigation('/soccer/league/Superliga/19686', { replace: true })
         }
     }
-    
+
     return (
         <form className="form">
             <input id="e-mail"

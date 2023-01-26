@@ -5,12 +5,12 @@ import Club from "./club/Club"
 import Player from './player/Player'
 import Breadcrumb from "./Breadcrumb";
 
-const Stats = ({ data }) => {
+const Stats = ({ data, loginRepos }) => {
     const navigation = useNavigate()
     const { id, clubID, playerID } = useParams()
     const [repos, setRepos] = React.useState(() => {
         return __isBrowser__
-            ? window.__INITIAL_CLUBS_DATA__ 
+            ? window.__INITIAL_CLUBS_DATA__ || loginRepos?.clubsData
             : data.clubsData
     })
     const [loading, setLoading] = React.useState(

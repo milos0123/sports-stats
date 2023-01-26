@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/server";
 import * as React from "react";
 import App from "../shared/components/App";
 import serialize from "serialize-javascript";
+import path from 'path'
 import { matchPath } from "react-router-dom";
 import routes from '../shared/routes';
 import { StaticRouter } from 'react-router-dom/server';
@@ -64,6 +65,7 @@ const sessionStore = new MySQLStore({
   database: process.env.DB_NAME,
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   key: 'session_cookie_name',
   secret: 'session_cookie_secret',
@@ -124,43 +126,41 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "https://sportstats.cyclic.app/auth/google/callback",
   passReqToCallback: true
-}, (request, accessToken, refreshToken, profile, done) => {
-  process.nextTick(async () => {
-    try {
-      const results = await queryDB(`SELECT * FROM users WHERE google_id = "${profile.id}"`)
-      if (results.length > 0) {
-        return done(null, results[0]);
+}, async (request, accessToken, refreshToken, profile, done) => {
+  try {
+    const results = await queryDB(`SELECT * FROM users WHERE google_id = "${profile.id}"`)
+    if (results.length > 0) {
+      return done(null, results[0]);
+    } else {
+      const user = await queryDB(`SELECT * FROM users WHERE username = "${profile.email}"`)
+      if (user.length == 0) {
+        const res = await queryDB(`INSERT INTO users(username, hash, salt, google_id) VALUES("${profile.email}", "/", "/", "${profile.id}")`)
+        const newUser = {
+          id: res.insertId,
+          username: profile.email,
+          hash: '',
+          salt: '',
+          google_id: profile.id
+        }
+        return done(null, newUser)
       } else {
-        const user = await queryDB(`SELECT * FROM users WHERE username = "${profile.email}"`)
-        if (user.length == 0) {
-          const results = await queryDB(`INSERT INTO users(username, hash, salt, google_id) VALUES("${profile.email}", "/", "/", "${profile.id}")`)
-          const newUser = {
-            id: results.insertId,
-            username: profile.email,
-            hash: '',
-            salt: '',
-            google_id: profile.id
-          }
-          return done(null, newUser)
-        } else {
-          return done(null, user[0]);
-        };
+        return done(null, user[0]);
       };
-    } catch (error) {
-      // console.log('error from google :', error)
-      return next(error);
-    }
-  })
+    };
+  } catch (error) {
+    return next(error);
+  }
 }));
 
 passport.serializeUser((user, done) => {
-  // console.log("inside serialize")
+  // console.log("inside serialize", user)
   done(null, user.id)
 });
 passport.deserializeUser(async (userId, done) => {
-  // console.log('deserializedUser_' + userId);
+  // console.log('deserializedUser_', userId);
   try {
     const results = await queryDB(`SELECT * FROM users WHERE id = "${userId}"`)
+    // console.log("results from desirialize", results)
     done(null, results[0])
   } catch (error) {
     done(error)
@@ -190,12 +190,12 @@ const getData = async (req, res) => {
   else { return {} }
 }
 
-app.get('/getUser', (req, res) => {
-  const { username } = req.user || { username: "" };
-  username.length
-    ? res.status(200).json(username)
-    : res.status(400).json('Not logged in')
-})
+// app.get('/getUser', (req, res) => {
+//   const { username } = req.user || { username: "" };
+//   username.length
+//     ? res.status(200).json(username)
+//     : res.status(400).json('Not logged in')
+// })
 
 app.get('/verify/me/:secret', async (req, res) => {
   try {
@@ -217,10 +217,7 @@ app.get('/verify/me/:secret', async (req, res) => {
 
 app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }))
 
-app.get('/auth/google/callback', passport.authenticate('google', {
-  failureRedirect: '/user/register',
-  failureMessage: true
-}), (req, res, next) => {
+app.get('/auth/google/callback', passport.authenticate('google'), (req, res, next) => {
   if (req.user) {
     if (!req.user.google_id) {
       req.logout(function (err) {
@@ -266,6 +263,7 @@ app.get("/fetchNationsData/:pageNum", catchAsyncErr(async (req, res) => {
 app.get("*", catchAsyncErr(async (req, res, next) => {
   const route = routes.find((route) => matchPath(route.path, req.url)) || {}
   const user = req.user
+
   if (user) {
     if (!route.path) {
       return res.redirect("/soccer/league/Superliga/19686")
@@ -280,7 +278,7 @@ app.get("*", catchAsyncErr(async (req, res, next) => {
   app.locals.notif = "";
   const markup = ReactDOM.renderToString(
     <StaticRouter location={req.url} >
-      <App notif={notif} serverData={data} />
+      <App notif={notif} serverData={data} userData={user?.username || ""} />
     </StaticRouter>
   )
   res.send(`
@@ -294,6 +292,7 @@ app.get("*", catchAsyncErr(async (req, res, next) => {
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />  <script>            
             window.__INITIAL_NATIONS_DATA__ = ${serialize(data.nationsData)}
             window.__INITIAL_CLUBS_DATA__ = ${serialize(data.clubsData)}
+            window.__INITIAL_USER__= ${serialize(user?.username) || ""}  
             window.__INITIAL_NOTIF__ = ${serialize(notif)}
           </script>
         </head>
@@ -353,7 +352,13 @@ app.post('/login', validateLoginForm, passport.authenticate('local'),
           res.status(400).json(".......Please verify your e-mail adress first....")
         });
       } else {
-        res.status(200).json(results[0].username)
+        const nationsData = await fetchCountries();
+        const clubsData = await fetchClubs();
+        const standings = await fetchStanings();
+        clubsData.map(team => {
+          team.standings = standings[0]?.standings.data.find(t => t.team_id === team.id) || null
+        })
+        res.status(200).json({ nationsData, clubsData, username: req.user.username })
       }
     } catch (error) {
       return next(error);

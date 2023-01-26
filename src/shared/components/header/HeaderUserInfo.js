@@ -11,12 +11,13 @@ const HeaderUserInfo = () => {
         const response = await fetch('/logout', {
             method: "POST"
         })
-        const data = await response.json()
         if (response.ok) {
             ctx.loggoutUser()
             navigation('/user/register', { replace: true })
         }
     }
+
+    // console.log("ctx from HEADER:::", ctx)
 
     return (
         <div className="user-info">
@@ -24,7 +25,7 @@ const HeaderUserInfo = () => {
                 <span>
                     <img src={`/${person.split("/").pop()}`}
                         className="header-user-svg" />
-                    <span> {ctx.username.slice(0, ctx.username.indexOf("@"))
+                    <span> {ctx.username?.slice(0, ctx.username?.indexOf("@"))
                     }</span>
                 </span>
                 <button onClick={userLogoutHandler}>Logout</button>

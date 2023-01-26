@@ -110,6 +110,10 @@ body {
     scale: 1.1;
 }
 
+.formBtn:active {
+    scale: 1.3;
+}
+
 .formToggler {
     display: flex;
     justify-content: space-around;
@@ -928,11 +932,6 @@ ul {
     .stats {
         padding-right: 0rem;
         padding-left: 0rem;
-    }
-
-    .lds-dual-ring:after {
-        margin-left: 25px;
-        margin-top: 150px;
     }
 }
 

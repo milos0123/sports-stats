@@ -3,7 +3,7 @@ import { Route, Routes, NavLink } from "react-router-dom";
 import RegisterForm from './forms/RegisterForm'
 import LoginForm from './forms/LoginForm'
 
-const Home = ({ notifHandler }) => {
+const Home = ({ notifHandler, sendLoginRepos }) => {
   return (
     <React.Fragment>
       <div className="forms">
@@ -28,7 +28,7 @@ const Home = ({ notifHandler }) => {
           <Route
             key="login"
             path="login"
-            element={< LoginForm notifHandler={notifHandler} />} />
+            element={< LoginForm notifHandler={notifHandler} sendLoginRepos={sendLoginRepos} />} />
         </Routes>
       </div>
     </React.Fragment>

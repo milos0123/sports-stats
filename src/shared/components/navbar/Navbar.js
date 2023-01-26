@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import NavFavLeagues from './NavFavLeagues'
 import NavCountries from './NavCountries'
 
-const Navbar = ({ data, isActiveHandler }) => {
+const Navbar = ({ data, isActiveHandler, loginRepos }) => {
     const navigation = useNavigate()
     const [nationsPagination, setNationsPagination] = React.useState(1)
     const [repos, setRepos] = React.useState(() => {
         return __isBrowser__
-            ? window.__INITIAL_NATIONS_DATA__
+            ? window.__INITIAL_NATIONS_DATA__ || loginRepos?.nationsData
             : data.nationsData
     })
     const [loading, setLoading] = React.useState(repos ? false : true)
